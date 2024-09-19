@@ -23,7 +23,7 @@ const Authentication = () => {
       Cookies.set("access_token", response.data.token, { expires: 7 });
       setUserData(response.data.data.user);
       navigate(
-        `/${response.data.data.user.type}/${response.data.data.user.id}`
+        `/reactapp/dist/${response.data.data.user.type}/${response.data.data.user.id}`
       );
     } catch (error) {
       if (error.response) {

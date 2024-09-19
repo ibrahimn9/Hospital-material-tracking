@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseUrl = "http://localhost:3000/api/v1/demandes";
+const baseUrl = "http://192.168.1.102:3000/api/v1/demandes";
 
 // Create a new Demande
 const createOne = async (body) => {

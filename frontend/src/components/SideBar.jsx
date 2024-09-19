@@ -19,7 +19,7 @@ const SideBar = () => {
 
   const logOut = () => {
     Cookies.set("access_token", "");
-    navigate(`/auth`);
+    navigate(`/reactapp/dist`);
   };
 
   const sideBarItems = [
@@ -51,7 +51,7 @@ const SideBar = () => {
     <div className="hidden sm:flex fixed left-0 top-0 h-screen  z-[100] bg-white p-4 sm:w-[200px] md:w-[320px] border-r border-gray4 flex-col items-center shadow-xl">
       <img
         src={images.logo}
-        onClick={() => navigate(`/admin`)}
+        onClick={() => navigate(`/reactapp/dist/admin`)}
         className="h-[50px] w-auto cursor-pointer"
         alt="logo"
       />
@@ -61,7 +61,7 @@ const SideBar = () => {
             key={index}
             onClick={() => {
               setSelectedItem(index);
-              navigate(`${item.route}`);
+              navigate(`/reactapp/dist${item.route}`);
             }}
             className={`py-2 sm:px-2 md:px-8 flex items-center rounded-md gap-12 text-md cursor-pointer transition-colors duration-300 font-medium  ${
               selectedItem === index ? "bg-primary text-white" : "text-gray-500"

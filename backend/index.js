@@ -8,16 +8,15 @@ const { Sequelize } = require("sequelize");
 const ApiError = require("./utils/ApiError");
 const globalError = require("./middlewares/errorMiddleware");
 
-
 const authRoutes = require("./routes/authRoutes");
-const materialRoutes = require('./routes/materialRoutes');
-const compteRoutes = require('./routes/compteRoutes');
-const structureRoutes = require('./routes/structureRoutes');
-const serviceRoutes = require('./routes/serviceRoutes');
-const bureauRoutes = require('./routes/bureauRoutes');
-const salleRoutes = require('./routes/salleRoutes');
-const demandeRoutes = require('./routes/demandeRoutes');
-const rapportRoutes = require('./routes/rapportRoutes');
+const materialRoutes = require("./routes/materialRoutes");
+const compteRoutes = require("./routes/compteRoutes");
+const structureRoutes = require("./routes/structureRoutes");
+const serviceRoutes = require("./routes/serviceRoutes");
+const bureauRoutes = require("./routes/bureauRoutes");
+const salleRoutes = require("./routes/salleRoutes");
+const demandeRoutes = require("./routes/demandeRoutes");
+const rapportRoutes = require("./routes/rapportRoutes");
 
 const PORT = process.env.PORT || 3000;
 
@@ -25,17 +24,16 @@ const PORT = process.env.PORT || 3000;
 const app = express();
 
 // Setup Sequelize
-const sequelize = require("./config/database"); 
+const sequelize = require("./config/database");
 
 // Middleware setup
 app.use(cors());
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: "http://192.168.1.102",
     credentials: true,
   })
 );
-
 
 app.use(express.json({ limit: "20kb" }));
 app.use(cookieParser());
@@ -44,7 +42,7 @@ app.use(express.static(path.join(__dirname, "public")));
 // Set view engine
 app.set("view engine", "ejs");
 
-// Development logging
+//Development logging
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
   console.log(`Mode: ${process.env.NODE_ENV}`);
@@ -72,18 +70,19 @@ app.use(globalError);
 // Start server and connect to database
 const server = http.createServer(app);
 
-sequelize.authenticate()
+sequelize
+  .authenticate()
   .then(() => {
-    console.log('Connected to the database.');
-    return sequelize.sync(); 
+    console.log("Connected to the database.");
+    return sequelize.sync();
   })
   .then(() => {
     server.listen(PORT, () => {
       console.log(`Server is listening on PORT ${PORT}`);
     });
   })
-  .catch(error => {
-    console.error('Unable to connect to the database:', error);
+  .catch((error) => {
+    console.error("Unable to connect to the database:", error);
   });
 
 // Handle unhandled promise rejections
@@ -93,4 +92,3 @@ process.on("unhandledRejection", (err) => {
     process.exit(1);
   });
 });
-

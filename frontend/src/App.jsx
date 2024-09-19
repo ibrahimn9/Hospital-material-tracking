@@ -29,26 +29,41 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/auth" element={<Authentication />} />
+        <Route path="/reactapp/dist" element={<Authentication />} />
 
-        <Route path="/admin/:id" element={<AdminHome />} />
+        <Route path="/reactapp/dist/admin/:id" element={<AdminHome />} />
         <Route
-          path="/admin/:id/material-management"
+          path="/reactapp/dist/admin/:id/material-management"
           element={<MaterialManagment />}
         />
-        <Route path="/admin/:id/user-management" element={<UserManagment />} />
         <Route
-          path="/admin/:id/room-department-management"
+          path="/reactapp/dist/admin/:id/user-management"
+          element={<UserManagment />}
+        />
+        <Route
+          path="/reactapp/dist/admin/:id/room-department-management"
           element={<Structure />}
         />
 
-        <Route path="/utilisateur/:id" element={<UserHome />} />
-        <Route path="/utilisateur/:id/materials" element={<UserMaterial />} />
-        <Route path="/utilisateur/:id/demandes" element={<UserDemande />} />
+        <Route path="/reactapp/dist/utilisateur/:id" element={<UserHome />} />
+        <Route
+          path="/reactapp/dist/utilisateur/:id/materials"
+          element={<UserMaterial />}
+        />
+        <Route
+          path="/reactapp/dist/utilisateur/:id/demandes"
+          element={<UserDemande />}
+        />
 
-        <Route path="/technicien/:id" element={<TechHome />} />
-        <Route path="/technicien/:id/materials" element={<UserMaterial />} />
-        <Route path="/technicien/:id/demandes" element={<TechDemande />} />
+        <Route path="/reactapp/dist/technicien/:id" element={<TechHome />} />
+        <Route
+          path="/reactapp/dist/technicien/:id/materials"
+          element={<UserMaterial />}
+        />
+        <Route
+          path="/reactapp/dist/technicien/:id/demandes"
+          element={<TechDemande />}
+        />
       </Routes>
     </BrowserRouter>
   );

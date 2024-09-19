@@ -21,8 +21,16 @@ const TechDemande = () => {
   const fetchAll = async () => {
     const res = await demandeService.getAll();
     const sortedDemandes = res.data.sort((a, b) => {
-      if (a.decision === "attente" && b.decision === "traité") return -1;
-      if (a.decision === "traité" && b.decision === "attente") return 1;
+      if (
+        (a.decision === "attente" || a.decision === null) &&
+        b.decision === "traité"
+      )
+        return -1;
+      if (
+        a.decision === "traité" &&
+        (b.decision === "attente" || b.decision === null)
+      )
+        return 1;
       return 0;
     });
     setDemandes(sortedDemandes);
@@ -137,7 +145,9 @@ const TechDemande = () => {
                 className={`bg-white shadow-lg rounded-lg p-6 relative flex flex-col justify-between ${
                   demande.decision === "traité" ? "bg-[#ddf8dacc]" : "bg-white"
                 }`}
-                style={{ backgroundColor : demande.decision === "traité" && "#ddf8dacc"}}
+                style={{
+                  backgroundColor: demande.decision === "traité" && "#ddf8dacc",
+                }}
               >
                 <div>
                   <h2 className="text-lg font-bold text-primary mb-2">

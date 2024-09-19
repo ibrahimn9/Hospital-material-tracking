@@ -146,16 +146,18 @@ exports.tokenVerify = async (req, res, next) => {
     // Verify the token
     const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
 
- 
-
     // Find the user from the database
     const user = await Compte.findOne({
       where: { userId: decoded.id },
-      include: { model: Type, attributes: ["TypeName"] },
+      include: [
+        { model: Type, attributes: ["TypeName"] },
+        {
+          model: Personne,
+          attributes: ["nom", "prenom"],
+        },
+      ],
       attributes: ["username", "userId"], // Select necessary fields
     });
-
-
 
     if (!user) {
       return res.status(404).json({ message: "User not found" });

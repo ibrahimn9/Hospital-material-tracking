@@ -32,8 +32,16 @@ const UserDemande = () => {
   const fetchAll = async () => {
     const res = await demandeService.getAll();
     const sortedDemandes = res.data.sort((a, b) => {
-      if (a.decision === "attente" && b.decision === "traité") return -1;
-      if (a.decision === "traité" && b.decision === "attente") return 1;
+      if (
+        (a.decision === "attente" || a.decision === null) &&
+        b.decision === "traité"
+      )
+        return -1;
+      if (
+        a.decision === "traité" &&
+        (b.decision === "attente" || b.decision === null)
+      )
+        return 1;
       return 0;
     });
     setDemandes(sortedDemandes);

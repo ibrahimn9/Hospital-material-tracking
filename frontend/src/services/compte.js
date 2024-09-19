@@ -1,10 +1,10 @@
 import axios from "axios";
 
-const baseUrl = "http://localhost:3000/api/v1/compte";
+const baseUrl = "http://192.168.1.102:3000/api/v1/compte";
 
 const createOne = async (body) => {
   return await axios.post(
-    `http://localhost:3000/api/v1/auth/create-user`,
+    `http://192.168.1.102:3000/api/v1/auth/create-user`,
     body
   );
 };
